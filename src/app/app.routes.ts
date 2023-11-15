@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { searchResolver } from './resolvers/search.resolver';
 
 export const routes: Routes = [
   {
@@ -7,12 +8,44 @@ export const routes: Routes = [
   },
   {
     path: 'search',
-    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent)
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
   },
   {
     path: ':propertyType/:purchaseType/:county/:town',
-    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent)
-  },  
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
+  }, 
+  {
+    path: ':purchaseType',
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
+  },
+  {
+    path: ':purchaseType/:propertyType',
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
+  },
+  {
+    path: ':purchaseType/:county',
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
+  },
+  {
+    path: ':purchaseType/:propertyType/:county',
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
+  },
+  {
+    path: ':purchaseType/:propertyType/:town',
+    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    resolve: { items: searchResolver }
+  },
+  ////////////////////////////////////////////////////////////////////
+  {
+    path: 'privacy-policy',
+    loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then((m) => m.PrivacyPolicyComponent) 
+  },
   { // TODO: a 404 component
     path: '*',
     pathMatch: 'full',
@@ -20,6 +53,16 @@ export const routes: Routes = [
   }
 ];
 
+/**
+ * ON FILTER CHANGE -> Search w/ query params
+ * /rent | all ireland rent
+ * /buy/commercial | all ireland commercial buy
+ * /buy/louth | all louth buy
+ * /rent/commercial/wexford | all wexford rent commercial
+ * /buy/residential/drogheda
+ */
+
+// OLD
 /**
  * .../residential/rent/louth/drogheda
  * .../commercial/buy/dublin-6/dartry

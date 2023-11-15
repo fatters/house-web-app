@@ -1,14 +1,4 @@
-// $s: #f4f1de;
-$s: #f5f5f5;
-$p:  #3d405b;
-$t: #e07a5f;
-
-$size-h: 8px;
-$size-1: 16px;
-$size-1h: 24px;
-$size-2: 32px;
-$size-3: 48px;
-$size-4: 64px;
+@import '../../../styles/variables';
 
 .moo {
     display: flex;
@@ -148,5 +138,23 @@ section {
     margin-bottom: $size-4;
     h2 {
         font-size: $size-1h;
+        margin-bottom: $size-1;
+        text-align: center;
+    }
+
+    a {
+      color: $t
+    }
+
+    &__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $size-1;
+      margin-top: $size-2;
+
+      li {
+        width: calc(25% - 12px);
+        text-align: center;
+      }
     }
 }

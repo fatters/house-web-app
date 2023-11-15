@@ -1,0 +1,41 @@
+// $s: #f4f1de;
+$s: #f5f5f5;
+$p:  #3d405b;
+$t: #e07a5f;
+
+$size-h: 8px;
+$size-1: 16px;
+$size-1h: 24px;
+$size-2: 32px;
+$size-3: 48px;
+$size-4: 64px;
+
+
+.search-item {
+  border-radius: 4px;
+  background: darken($s, 4%);
+  box-shadow: 0 4px 4px -4px rgba(0,0,0,.3);
+  margin-top: $size-1h;
+  padding: $size-1;
+}
+
+.container--search {
+  display: flex;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+aside {
+  display: none;
+  width: 300px;
+//   background: darken($s, 4%);
+  padding: $size-1;
+
+  @media screen and (min-width: 992px) {
+    display: block;
+    margin-left: $size-1;
+  }
+
+}

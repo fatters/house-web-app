@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'styles/variables';
+
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 
 $size-h: 8px;
@@ -61,15 +63,27 @@ footer {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   padding-left: $size-1;
   padding-right: $size-1;
   margin: 0 auto;
+
+  &--wide {
+    max-width: 1400px;
+  }
 }
 
 button {
   cursor: pointer;
+}
+
+.page {
+  padding: $size-1 0;
+
+  @media screen and (min-width: 992px) {
+    padding: $size-2 0;
+  }
 }
 
 // a11y

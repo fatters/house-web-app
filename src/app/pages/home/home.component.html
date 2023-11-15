@@ -45,5 +45,14 @@
     
     <div class="seo-links">
         <h2>Counties</h2>
+        <button>Buy Residential</button>
+        <button>Rent Residential</button>
+        <button>Buy Commercial</button>
+        <button>Rent Commercial</button>
+        <ul class="seo-links__links">
+          @for (county of counties; track county) {
+            <li><a [routerLink]="'/buy/residential/' + county.toLowerCase()">{{county}}</a></li>
+          }
+        </ul>
     </div>
 </div>
