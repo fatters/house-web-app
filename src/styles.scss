@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+$size-h: 8px;
+$size-1: 16px;
+$size-1h: 24px;
+$size-2: 32px;
+
+//$p:  #5e32a8;
+//$s: #f4f1de;
+$s: #f5f5f5;
+$p:  #3d405b;
+$t: #e07a5f;
+
+html,
+body {
+  height: 100%;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: $s;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: contents;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+header {
+  color: $s;
+  background: $p;
+  padding: $size-2 0;
+
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a,
+header a {
+  color: $s;
+
+  + a {
+    margin-left: $size-1;
+  }
+}
+
+footer {
+  background: $p;
+  flex-shrink: 0;
+  padding: $size-2 0;
+  color: $s;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  padding-left: $size-1;
+  padding-right: $size-1;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+// a11y
+a:focus,
+input:focus,
+button:focus {
+  outline: 4px solid white;
+
+  &:not(.no-offset) {
+    outline-offset: 2px;
+  }
+}

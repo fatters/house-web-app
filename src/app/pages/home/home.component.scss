@@ -1,0 +1,152 @@
+// $s: #f4f1de;
+$s: #f5f5f5;
+$p:  #3d405b;
+$t: #e07a5f;
+
+$size-h: 8px;
+$size-1: 16px;
+$size-1h: 24px;
+$size-2: 32px;
+$size-3: 48px;
+$size-4: 64px;
+
+.moo {
+    display: flex;
+    padding: 4px;
+    padding: 0 $size-2;
+
+    button {
+        flex-grow: 1;
+        background: $p;
+        color: $s;
+        font-family: inherit;
+        border: 0;
+        padding: $size-1;
+        font-weight: bold;
+    }
+
+    button + button {
+        margin-left: $size-1;
+    }
+
+    button.active {
+        color: $t;
+        border-bottom: 4px solid $t;
+    }
+}
+
+.search-bar {
+    // background: $p;
+
+    background: $p;
+    box-shadow:0 6px 6px #c0c0c0;
+    border-radius: $size-h;
+
+    margin-top: -68px;
+    margin-bottom: $size-4;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        padding: 8px $size-2 $size-2;
+        gap: $size-1;
+
+        input {
+            padding: $size-h;
+            height: 48px;
+            width: 100%;
+            border-radius: 4px;
+            // margin-right: $size-1;
+            font-family: inherit;
+            border: 2px solid transparent;
+        }
+    
+        button {
+            width: 200px;
+            background: $t;
+            border: 0;
+            border-radius: 4px;
+            color: $s;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: $size-1;
+            height: 48px;
+            width: 100%;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+
+        &__inner {
+            flex-direction: row;
+
+            button {
+                max-width: 200px;
+            }
+        }
+        
+
+    }
+}
+
+.banner {
+    height: 25vw;
+    min-height: 240px;
+    max-height: 480px;
+    background: #c0c0c0;
+    // background-image: url('https://preview.redd.it/5gshil982jzb1.jpg?width=640&crop=smart&auto=webp&s=99b32445a34c563161f30d69c5edadac81f53ee0');
+    // background-repeat: repeat-x;
+    
+}
+
+// COMPONENTISE
+section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $size-4;
+
+    h2 {
+        color: $p;
+        font-size: 32px;
+        margin-bottom: $size-2;
+    }
+
+    img {
+        box-shadow:0 6px 6px #c0c0c0;
+        max-width: 200px;
+        margin: 0 auto $size-2;
+    }
+
+    p {line-height: 1.4}
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+
+        img {
+            margin: 0;
+        }
+
+        .section__content {
+            margin-left: $size-2;
+        }
+
+        &.mooz {
+            img {
+                order: 1
+            }
+
+            .section__content {
+                margin-left: 0;
+                margin-right: $size-2;
+            }
+        }
+    }
+}
+
+.seo-links {
+    margin-bottom: $size-4;
+    h2 {
+        font-size: $size-1h;
+    }
+}
