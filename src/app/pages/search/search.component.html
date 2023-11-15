@@ -1,7 +1,14 @@
 
 <div class="filter-container">
   <div class="container container--wide">
-    filters
+    beds:
+    <select (change)="changeBeds($event)">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
   </div>
 </div>
 
@@ -12,17 +19,18 @@
   
   <div class="container container--wide container--search">
     <div class="main">
-      <h1>Search</h1>
       @if (isLoading()) {
         <p>loading...</p>
       }
       @for (moo of yes(); track moo) {
-        <div class="search-item">
-          <p>{{moo.address.one}}, {{moo.address.two}}, {{moo.address.town}}, {{moo.address.county}}</p>
-          <p>Beds: {{moo.beds}}</p>
-          <p>Baths: {{moo.baths}}</p>
-          <p>Size: {{moo.sizeMetersSquared}}</p>
-        </div>
+        <a [routerLink]="'/'" class="item-wrapper">
+          <div class="search-item">
+            <p>{{moo.address.one}}, {{moo.address.two}}, {{moo.address.town}}, {{moo.address.county}}</p>
+            <p>Beds: {{moo.beds}}</p>
+            <p>Baths: {{moo.baths}}</p>
+            <p>Size: {{moo.sizeMetersSquared}}m&#178;</p>
+          </div>
+        </a>
       } @empty {
        <p>No results</p>
       }

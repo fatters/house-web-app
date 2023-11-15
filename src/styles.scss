@@ -86,6 +86,19 @@ button {
   }
 }
 
+footer {
+  a {
+    color: $s;
+    display: block;
+    margin-top: $size-h;
+  }
+}
+
+.footer-moo {
+  color: $t;
+  font-size: $size-1h;
+}
+
 // a11y
 a:focus,
 input:focus,

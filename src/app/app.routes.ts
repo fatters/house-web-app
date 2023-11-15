@@ -9,37 +9,43 @@ export const routes: Routes = [
   {
     path: 'search',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
+    resolve: { items: searchResolver },
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
     path: ':propertyType/:purchaseType/:county/:town',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
+    resolve: { items: searchResolver },
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   }, 
+//   {
+//     path: ':purchaseType',
+//     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+//     resolve: { items: searchResolver }
+//   },
   {
-    path: ':purchaseType',
+    path: ':purchaseType/:propertyType', // TODO dont path the first bit
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
-  },
-  {
-    path: ':purchaseType/:propertyType',
-    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
+    resolve: { items: searchResolver },
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
     path: ':purchaseType/:county',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
+    resolve: { items: searchResolver },
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
     path: ':purchaseType/:propertyType/:county',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
+    resolve: { items: searchResolver },
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
     path: ':purchaseType/:propertyType/:town',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver }
+    resolve: { items: searchResolver },
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   ////////////////////////////////////////////////////////////////////
   {

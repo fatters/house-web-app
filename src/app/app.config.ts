@@ -1,15 +1,21 @@
 import { ApplicationConfig } from '@angular/core';
-import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
+import { InMemoryScrollingOptions, PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { routes } from './app.routes';
 
+const inMemoryScrollingOptions: InMemoryScrollingOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+};
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       routes, 
-      withPreloading(PreloadAllModules)
+      withPreloading(PreloadAllModules),
+      withInMemoryScrolling(inMemoryScrollingOptions)
     ),
     provideHttpClient(withFetch()),
     provideClientHydration()

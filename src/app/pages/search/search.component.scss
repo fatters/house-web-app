@@ -10,12 +10,32 @@ $size-2: 32px;
 $size-3: 48px;
 $size-4: 64px;
 
+.filter-container {
+  background: lighten($p, 10%);
+  padding: $size-2 0;
+}
+
+.item-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  + .item-wrapper {
+    margin-top: $size-1;
+  }
+
+  @media screen and (min-width: 992px) {
+
+    + .item-wrapper {
+      margin-top: $size-1h;
+    }
+  }
+}
 
 .search-item {
   border-radius: 4px;
   background: darken($s, 4%);
   box-shadow: 0 4px 4px -4px rgba(0,0,0,.3);
-  margin-top: $size-1h;
   padding: $size-1;
 }
 
@@ -31,11 +51,11 @@ aside {
   display: none;
   width: 300px;
 //   background: darken($s, 4%);
-  padding: $size-1;
+//   padding: $size-1;
 
   @media screen and (min-width: 992px) {
     display: block;
-    margin-left: $size-1;
+    margin-left: $size-1h;
   }
 
 }
