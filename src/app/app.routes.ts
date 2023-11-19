@@ -13,37 +13,26 @@ export const routes: Routes = [
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
-    path: ':propertyType/:purchaseType/:county/:town',
-    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-    resolve: { items: searchResolver },
-    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
-  }, 
-//   {
-//     path: ':purchaseType',
-//     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
-//     resolve: { items: searchResolver }
-//   },
-  {
-    path: ':purchaseType/:propertyType', // TODO dont path the first bit
+    path: ':purchaseType/:advertType', // TODO dont path the first bit
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
     resolve: { items: searchResolver },
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
-    path: ':purchaseType/:county',
+    path: ':purchaseType/:advertType/:county',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
     resolve: { items: searchResolver },
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
-    path: ':purchaseType/:propertyType/:county',
+    path: ':purchaseType/:advertType/:county/:town',
     loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
     resolve: { items: searchResolver },
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
-    path: ':purchaseType/:propertyType/:town',
-    loadComponent: () => import('./pages/search/search.component').then((m) => m.SearchComponent),
+    path: ':purchaseType/:advertType/:county/:town/advert/:id',
+    loadComponent: () => import('./pages/advert/advert.component').then((m) => m.AdvertComponent),
     resolve: { items: searchResolver },
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
@@ -52,10 +41,10 @@ export const routes: Routes = [
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then((m) => m.PrivacyPolicyComponent) 
   },
-  { // TODO: a 404 component
+  { // TODO: a 404 component THIS CURRENTLY DONT WORK
     path: '*',
     pathMatch: 'full',
-    redirectTo: ''
+    redirectTo: '/'
   }
 ];
 

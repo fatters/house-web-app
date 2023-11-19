@@ -1,0 +1,12 @@
+<div class="seo-links">
+  <h2>Counties</h2>
+  <button (click)="setAdvertAndPurchaseType('residential', 'buy')">Buy Residential</button>
+  <button (click)="setAdvertAndPurchaseType('residential', 'rent')">Rent Residential</button>
+  <button (click)="setAdvertAndPurchaseType('commercial', 'buy')">Buy Commercial</button>
+  <button (click)="setAdvertAndPurchaseType('commercial', 'rent')">Rent Commercial</button>
+  <ul class="seo-links__links">
+    @for (county of counties; track county) {
+      <li><a [routerLink]="'/' + purchaseType + '/' + advertType + '/' + county.toLowerCase()">{{purchaseType | titlecase}} in {{county}}</a></li>
+    }
+  </ul>
+</div>

@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { InMemoryScrollingOptions, PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
+import { InMemoryScrollingOptions, PreloadAllModules, provideRouter, withComponentInputBinding, withInMemoryScrolling, withPreloading } from '@angular/router';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -13,9 +13,10 @@ const inMemoryScrollingOptions: InMemoryScrollingOptions = {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
-      routes, 
-      withPreloading(PreloadAllModules),
-      withInMemoryScrolling(inMemoryScrollingOptions)
+      routes,
+      withComponentInputBinding(),
+      withInMemoryScrolling(inMemoryScrollingOptions),
+      withPreloading(PreloadAllModules)
     ),
     provideHttpClient(withFetch()),
     provideClientHydration()

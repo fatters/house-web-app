@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { SearchMock } from "../data/search.mock";
-import { Observable, filter, flatMap, map, mergeMap, of } from "rxjs";
+import { Observable, map } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +15,6 @@ export class HttpService {
     data = this.page(data);
 
     return data;
-
-    return of(SearchMock);
   }
 
   // Simulate page from backend
@@ -34,9 +31,11 @@ export class HttpService {
         let itemValue = item[k]
         let paramValue = params[k];
 
+
+
         // TODO START
         // TODO: THIS SHOULD BE DONE IN RESOLVER?
-        if (k === 'beds' || k === 'baths' || k === 'sizeMetersSquared') {
+        if (k === 'minBeds' || k === 'maxBeds' || k === 'baths' || k === 'sizeMetersSquared') {
           paramValue = parseInt(paramValue);
         }
 
@@ -46,8 +45,22 @@ export class HttpService {
           itemValue = item.address[k].toLowerCase();
         }
 
-        if (itemValue !== paramValue) {
-          isAllMatch = false;
+        if (k === 'minBeds' || k === 'maxBeds') {
+          itemValue = item['beds'];
+        }
+
+        if (k.startsWith('min')) {
+          if (itemValue < paramValue) {
+            isAllMatch = false;
+          }
+        } else if (k.startsWith('max')) {
+          if (itemValue > paramValue) {
+            isAllMatch = false;
+          }          
+        } else {
+          if (itemValue !== paramValue) {
+            isAllMatch = false;
+          }
         }
       });
 

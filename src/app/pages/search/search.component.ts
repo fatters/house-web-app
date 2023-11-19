@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject, numberAttribute, signal } from "@angular/core";
 import { HttpService } from "../../services/http.service";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+
 
 @Component({
   standalone: true,
@@ -11,38 +12,46 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit {
-  moo = inject(HttpService);
-  yes = signal<any>([]);
+  @Input({ transform: numberAttribute }) minBeds = 0;
+  @Input({ transform: numberAttribute }) maxBeds = 0;
+  @Input({ transform: numberAttribute }) minPrice = 0;
+  @Input({ transform: numberAttribute }) maxPrice = 0;
+  @Input() propertyType = '';
+  @Input() county = '';
+
+  searchItems = signal<any>([]);
   isLoading = signal<boolean>(false);
 
-  route = inject(ActivatedRoute);
-  router: Router = inject(Router);
+  // private dialog = inject(Dialog); TODO instal cdk
+  private route = inject(ActivatedRoute);
+  private router: Router = inject(Router);
 
   ngOnInit(): void {
     this.route.data.subscribe(({items}) => {
-      this.yes.set(items);
+      this.searchItems.set(items);
     })
-    // this.moo.search().subscribe((mo: any) => {
-    //   this.isLoading.set(true);
-    //   this.yes.set(mo)
-    //   this.isLoading.set(false);
-    // });
   }
 
-  changeBeds(event: any): void { // TODO: type safe?
-    const value = event?.target?.value;
+  ngOnChanges(): void {
+    // console.log('moo', this.beds);
+  }
 
+  // Following functions move to filters components
+
+  changeFilter(prop: string, value: unknown): void { // TODO: type safe?
     if (!value) {
       return;
     }
 
-    const beds = parseInt(value);
+    if (prop === 'minBeds' || prop === 'maxBeds') {
+      value = parseInt(value as string);
+    }
 
     const updatedQueryParams = {
       ...this.route.snapshot.queryParams,
       ...this.route.snapshot.params,
-      beds
-    }
+      [prop]: value
+    };
 
     const currentUrl = this.router.url.split('?')[0];
 
@@ -56,5 +65,15 @@ export class SearchComponent implements OnInit {
       queryParams: updatedQueryParams,
       queryParamsHandling: 'merge'
     });
+  }
+
+  openAllFilters(): void {
+    console.log('open all');
+    // this.dialog.open(CdkDialogDataExampleDialog, {
+    //   minWidth: '300px',
+    //   data: {
+    //     animal: 'panda',
+    //   },
+    // });
   }
 }

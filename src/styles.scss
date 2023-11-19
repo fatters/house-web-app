@@ -63,7 +63,7 @@ footer {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
   padding-left: $size-1;
   padding-right: $size-1;
@@ -102,10 +102,16 @@ footer {
 // a11y
 a:focus,
 input:focus,
+select:focus,
 button:focus {
-  outline: 4px solid white;
+  outline: 4px solid black;
 
   &:not(.no-offset) {
     outline-offset: 2px;
   }
+}
+
+// Development
+.not-implemented {
+  border: 2px dotted red;
 }

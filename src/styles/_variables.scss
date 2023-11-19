@@ -1,3 +1,4 @@
+$size-q: 4px;
 $size-h: 8px;
 $size-1: 16px;
 $size-1h: 24px;
@@ -5,10 +6,13 @@ $size-2: 32px;
 $size-3: 48px;
 $size-4: 64px;
 
-
-//$p:  #5e32a8;
-//$s: #f4f1de;
-$s: #f5f5f5;
-$-dark: darken($s, 4%);
+// Primary
 $p:  #3d405b;
+$p-light: lighten($p, 10%);
+
+// Secondary
+$s: #f5f5f5;
+$s-dark: darken($s, 4%);
+
+// Tertiary
 $t: #e07a5f;

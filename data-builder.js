@@ -35,42 +35,36 @@ const counties = [
   'Wicklow'
 ];
 
-// propertyType: 'residential',
-// purchaseType: 'buy',
-// address: {
-//   one: 'Saint Andrew\'s',
-//   two: 'Seapoint',
-//   town: 'Termonfeckin',
-//   county: 'Louth',
-//   eirCode: 'A92 YW02'
-// },
-// price: [ // Type
-//   {
-//     value: '350000',
-//     currency: 'EUR',
-//     isCurrent: true
-//   }
-// ],
-// beds: 4,
-// baths: 2,
-// sizeMetersSquared: 158,
-// houseType: 'detached', // Type
-// saleType: 'Private Treaty', // Type,
-// media: {
-//   images: [],
-//   videos: [],
-//   virtualtour: []
-// }
-// },
+const advertType = [
+  'residential',
+  'commercial'
+];
 
+const propertyType = [
+  'detached',
+  'semiDetached',
+  'terraced',
+  'flat',
+  'bungalow',
+  'land'
+];
+
+const purchaseType = [
+  'buy',
+  'rent'
+];
 
 const ITEMS_PER_COUNTY = 10;
 let data = [];
 
 const buildItem = (county) => {
   return {
-    propertyType: 'residential',
-    purchaseType: 'buy',
+    advertType: advertType[getRandomNumber(0, advertType.length - 1)],
+    propertyType: propertyType[getRandomNumber(0, propertyType.length - 1)],
+    purchaseType: purchaseType[getRandomNumber(0, 1)],
+    saleType: 'private',
+    dateCreated: new Date(new Date() - Math.random()*(1e+12)),
+    dateUpdated: null,
     address: {
       one: getRandomNumber(1, 100),
       two: 'street',
@@ -78,18 +72,14 @@ const buildItem = (county) => {
       county: county,
       eirCode: 'A92 YW02'
     },
-    price: [
-      {
-        value: getRandomNumber(100000, 400000),
-        currency: 'EUR',
-        isCurrent: true
-      }
-    ],
-    beds: getRandomNumber(2, 5),
+    price: {
+      value: getRandomNumber(100000, 400000),
+      currency: 'EUR',
+      isCurrent: true
+    },
+    beds: getRandomNumber(1, 5),
     baths: getRandomNumber(1, 4),
     sizeMetersSquared: getRandomNumber(100, 200),
-    houseType: 'detached',
-    saleType: 'private',
     media: {
       images: [
         'https://placehold.co/900x700',
@@ -110,10 +100,8 @@ const getRandomNumber = (min, max) => {
 
 for (let i = 0; i < counties.length; i++) {
   for (let j = 0; j < ITEMS_PER_COUNTY; j++) {
-    console.log('moo')
     data.push(buildItem(counties[i]));
-    console.log('d', data);
   }
 }
 
-fs.writeFile('./src/app/data/test.json', JSON.stringify(data), function() {});
+fs.writeFile('./src/assets/test.json', JSON.stringify(data), function(err) { console.log('Error', err) });

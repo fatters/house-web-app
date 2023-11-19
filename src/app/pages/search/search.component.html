@@ -1,49 +1,115 @@
 
 <div class="filter-container">
-  <div class="container container--wide">
-    beds:
-    <select (change)="changeBeds($event)">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
+  <div class="container">
+    <div class="filters">
+      <div class="filter not-implemented">
+        <input [value]="county || ''" type="text" />
+      </div>
+  
+      <div class="filter">
+        <select (change)="changeFilter('minBeds', $any($event.target).value)" [value]="minBeds">
+          <option value="NaN">min beds</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        to
+        <select (change)="changeFilter('maxBeds', $any($event.target).value)" [value]="maxBeds">
+          <option value="NaN">max beds</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select> 
+      </div>
+  
+      <div class="filter not-implemented">
+        <select (change)="changeFilter('minPrice', $any($event.target).value)" [value]="minBeds">
+          <option value="NaN">min price</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        to
+        <select (change)="changeFilter('maxPrice', $any($event.target).value)" [value]="maxBeds">
+          <option value="NaN">max price</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select> 
+      </div>
+
+      <div class="filter">
+        <select (change)="changeFilter('propertyType', $any($event.target).value)" [value]="propertyType">
+          <option value="undefined">Property Type</option>
+          <option value="detached">Detached</option>
+          <option value="semiDetached">Semi-detached</option>
+          <option value="terraced">Terraced</option>
+          <option value="flat">Flat</option>
+          <option value="bungalow">Bungalow</option>
+          <option value="land">Land</option>
+        </select>
+      </div>
+
+      <div>
+        <select>
+          <option>Newest Listed</option>
+          <option>Oldest Listed</option>
+          <option>Price High</option>
+          <option>Price Low</option>
+        </select>
+      </div>
+
+      <div>
+        <button type="button" (click)="openAllFilters()">More</button>
+      </div>
+    </div>  
   </div>
 </div>
 
 <div class="page">
-
-
-  
-  
-  <div class="container container--wide container--search">
-    <div class="main">
-      @if (isLoading()) {
-        <p>loading...</p>
-      }
-      @for (moo of yes(); track moo) {
-        <a [routerLink]="'/'" class="item-wrapper">
-          <div class="search-item">
-            <p>{{moo.address.one}}, {{moo.address.two}}, {{moo.address.town}}, {{moo.address.county}}</p>
-            <p>Beds: {{moo.beds}}</p>
-            <p>Baths: {{moo.baths}}</p>
-            <p>Size: {{moo.sizeMetersSquared}}m&#178;</p>
+  <div class="container">
+    @if (isLoading()) {
+      <p>loading...</p>
+    }
+    @for (item of searchItems(); track item) {
+      <a [routerLink]="'/buy/residential/county/town/advert/1'" class="item-wrapper">
+        <div class="search-item">
+          <div class="search-item__media">
+            <img [src]="item.media.images[0]" alt="" width="240" />
+            <img [src]="item.media.images[1]" alt="" width="240" />              
           </div>
-        </a>
-      } @empty {
-       <p>No results</p>
-      }
-    </div>
-  
-    <aside>
-      <a href>See properties to OPPOSITE in PLACE</a>
-      <p>Related Searches</p>
-      <p>Suggested</p>
-      <a>Agents in PLACE</a>
-    </aside>
-  </div>
-  
+          <div class="search-item__content">
+            <p><strong>{{item.address.one}} {{item.address.two}}, {{item.address.town}}, {{item.address.county}}</strong></p>
+            <p>&euro;{{item.price.value | number}}</p>
+            <p>Beds: {{item.beds}}</p>
+            <p>Baths: {{item.baths}}</p>
+            <p>Size: {{item.sizeMetersSquared}}m&#178;</p>
+            <p>Advert Type: {{item.advertType}}</p>
+            <p>Property type: {{item.propertyType}}</p>
+            <p>purchase: {{item.purchaseType}}</p>
+          </div>
+        </div>
+      </a>
+    } @empty {
+     <p>No results</p>
+    }
 
+    <!-- pagination -->
+    <ul class="pagination not-implemented">
+      <li><a href="">1</a></li>
+      <li><a href="">2</a></li>
+      <li><a href="">3</a></li>
+      <li><a href="">4</a></li>
+      <li><a href="">5</a></li>
+    </ul>
+  </div>
 </div>
 

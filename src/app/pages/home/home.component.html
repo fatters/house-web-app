@@ -14,7 +14,7 @@
         </div>
         <div class="search-bar__inner">
             <input type="text" placeholder="Please enter a location">
-            <button>Search</button>
+            <button (click)="search()">Search</button>
         </div>
 
     </div>
@@ -22,7 +22,7 @@
     <section>
         <img src="https://placehold.co/200x200" />
         <div class="section__content">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <h2>A cool first thing I can't think of</h2>
             <p>Etiam sed lectus ipsum. Aenean urna leo, finibus in posuere ac, tincidunt a risus. Sed tempor auctor condimentum. Ut ac augue at quam aliquet tincidunt in et ipsum.</p>
         </div>
     </section>
@@ -30,29 +30,18 @@
     <section class="mooz">
         <img src="https://placehold.co/200x200" />
         <div class="section__content">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-            <p>Etiam sed lectus ipsum. Aenean urna leo, finibus in posuere ac, tincidunt a risus. Sed tempor auctor condimentum. Ut ac augue at quam aliquet tincidunt in et ipsum.</p>
+            <h2>With advanced filtering</h2>
+            <p>Filters such as gardens and the size of property allow you to really find what you're looking for.</p>
         </div>
     </section>
     
     <section>
         <img src="https://placehold.co/200x200" />
         <div class="section__content">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <h2>No third-party tracking</h2>
             <p>Etiam sed lectus ipsum. Aenean urna leo, finibus in posuere ac, tincidunt a risus. Sed tempor auctor condimentum. Ut ac augue at quam aliquet tincidunt in et ipsum.</p>
         </div>
     </section>
     
-    <div class="seo-links">
-        <h2>Counties</h2>
-        <button>Buy Residential</button>
-        <button>Rent Residential</button>
-        <button>Buy Commercial</button>
-        <button>Rent Commercial</button>
-        <ul class="seo-links__links">
-          @for (county of counties; track county) {
-            <li><a [routerLink]="'/buy/residential/' + county.toLowerCase()">{{county}}</a></li>
-          }
-        </ul>
-    </div>
+    <app-seo-links></app-seo-links>
 </div>

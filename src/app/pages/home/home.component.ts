@@ -1,10 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { Router, RouterModule } from "@angular/router";
+import { SeoLinksComponent } from "../../components/seo-links/seo-links.component";
 
 @Component({
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, SeoLinksComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -46,7 +47,13 @@ export class HomeComponent {
       'Wicklow'
     ]
 
+    private router = inject(Router);
+
     setActive(toset: string): void {
         this.active = toset; 
+    }
+
+    search(): void {
+      this.router.navigateByUrl('search');
     }
 }

@@ -1,11 +1,10 @@
 <header>
   <div class="container">
-    <p><a [routerLink]="'/'">logo</a></p>
+    <p><a [routerLink]="'/'">Home</a></p>
     <nav>
       <a [routerLink]="'/search'">Search</a>
-      <a href>Buy</a>
-      <a href>Rent</a>
-      <a href>My Profile</a>
+      <a [routerLink]="'/search'">Buy</a>
+      <a [routerLink]="'/search'">Rent</a>
     </nav>
   </div>
 </header>
@@ -19,5 +18,8 @@
     <a [routerLink]="'/privacy-policy'">Privacy Policy</a>
     <a>Cookie Policy</a>
     <a>Terms and Conditions</a>
+  </div>
+  <div class="container">
+    &copy; COMPANY_NAME 2023.
   </div>
 </footer>

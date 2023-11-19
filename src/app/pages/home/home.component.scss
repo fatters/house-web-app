@@ -112,6 +112,7 @@ section {
     @media screen and (min-width: 768px) {
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
 
         img {
             margin: 0;
@@ -131,30 +132,5 @@ section {
                 margin-right: $size-2;
             }
         }
-    }
-}
-
-.seo-links {
-    margin-bottom: $size-4;
-    h2 {
-        font-size: $size-1h;
-        margin-bottom: $size-1;
-        text-align: center;
-    }
-
-    a {
-      color: $t
-    }
-
-    &__links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: $size-1;
-      margin-top: $size-2;
-
-      li {
-        width: calc(25% - 12px);
-        text-align: center;
-      }
     }
 }
