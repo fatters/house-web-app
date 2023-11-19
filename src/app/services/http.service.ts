@@ -57,13 +57,17 @@ export class HttpService {
 
         // TODO START
         // TODO: THIS SHOULD BE DONE IN RESOLVER?
-        if (k === 'minBeds' || k === 'maxBeds') {
+        if (k === 'minBeds' || k === 'maxBeds' || k === 'minPrice' || k === 'maxPrice') {
           paramValue = parseInt(paramValue);
         }
         // TODO END
 
         if (k === 'county') {
           itemValue = item.address[k].toLowerCase();
+        }
+
+        if (k === 'minPrice' || k === 'maxPrice') {
+          itemValue = item.price.value;
         }
 
         if (k === 'minBeds' || k === 'maxBeds') {

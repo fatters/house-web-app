@@ -7,8 +7,8 @@
       </div>
   
       <div class="filter">
-        <select (change)="changeFilter('minBeds', $any($event.target).value)" [value]="minBeds">
-          <option value="NaN">min beds</option>
+        <select (change)="changeFilter('minBeds', $any($event.target).value)" [value]="minBeds || -1">
+          <option value="-1">min beds</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -16,8 +16,8 @@
           <option value="5">5</option>
         </select>
         to
-        <select (change)="changeFilter('maxBeds', $any($event.target).value)" [value]="maxBeds">
-          <option value="NaN">max beds</option>
+        <select (change)="changeFilter('maxBeds', $any($event.target).value)" [value]="maxBeds || -1">
+          <option value="-1">max beds</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -26,23 +26,23 @@
         </select> 
       </div>
   
-      <div class="filter not-implemented">
-        <select (change)="changeFilter('minPrice', $any($event.target).value)" [value]="minBeds">
-          <option value="NaN">min price</option>
-          <option value="1">50000</option>
-          <option value="2">100000</option>
-          <option value="3">150000</option>
-          <option value="4">200000</option>
-          <option value="5">250000</option>
+      <div class="filter">
+        <select (change)="changeFilter('minPrice', $any($event.target).value)" [value]="minPrice || -1">
+          <option value="-1">min price</option>
+          <option value="50000">50000</option>
+          <option value="100000">100000</option>
+          <option value="150000">150000</option>
+          <option value="200000">200000</option>
+          <option value="250000">250000</option>
         </select>
         to
-        <select (change)="changeFilter('maxPrice', $any($event.target).value)" [value]="maxBeds">
-          <option value="NaN">max price</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+        <select (change)="changeFilter('maxPrice', $any($event.target).value)" [value]="maxPrice || -1">
+          <option value="-1">max price</option>
+          <option value="100000">100000</option>
+          <option value="200000">200000</option>
+          <option value="300000">300000</option>
+          <option value="400000">400000</option>
+          <option value="500000">500000</option>
         </select> 
       </div>
 

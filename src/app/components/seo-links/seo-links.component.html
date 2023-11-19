@@ -1,9 +1,11 @@
 <div class="seo-links">
-  <h2>Search by County</h2>
-  <button (click)="setAdvertAndPurchaseType('residential', 'buy')">Buy Residential</button>
-  <button (click)="setAdvertAndPurchaseType('residential', 'rent')">Rent Residential</button>
-  <button (click)="setAdvertAndPurchaseType('commercial', 'buy')">Buy Commercial</button>
-  <button (click)="setAdvertAndPurchaseType('commercial', 'rent')">Rent Commercial</button>
+  <h2 class="seo-links__title">Search by County</h2>
+  <div class="seo-links__nav">
+    <button (click)="setAdvertAndPurchaseType('residential', 'buy')" [ngClass]="{'active': purchaseType === 'buy' && advertType === 'residential'}">Buy Residential</button>
+    <button (click)="setAdvertAndPurchaseType('residential', 'rent')" [ngClass]="{'active': purchaseType === 'rent' && advertType === 'residential'}">Rent Residential</button>
+    <button (click)="setAdvertAndPurchaseType('commercial', 'buy')" [ngClass]="{'active': purchaseType === 'buy' && advertType === 'commercial'}">Buy Commercial</button>
+    <button (click)="setAdvertAndPurchaseType('commercial', 'rent')" [ngClass]="{'active': purchaseType === 'rent' && advertType === 'commercial'}">Rent Commercial</button>
+  </div>
   <ul class="seo-links__links">
     @for (county of counties; track county) {
       <li><a [routerLink]="'/' + purchaseType + '/' + advertType + '/' + county.toLowerCase()">{{purchaseType | titlecase}} {{advertType | titlecase}} in {{county}}</a></li>

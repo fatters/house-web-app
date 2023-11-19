@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    if (prop === 'minBeds' || prop === 'maxBeds') {
+    if (prop === 'minBeds' || prop === 'maxBeds' || prop === 'minPrice' || prop === 'maxPrice') {
       value = parseInt(value as string);
     }
 

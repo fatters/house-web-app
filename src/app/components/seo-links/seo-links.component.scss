@@ -1,8 +1,30 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .seo-links {
   margin-bottom: $size-4;
-  h2 {
+
+  &__nav {
+    display: flex;
+    gap: $size-1h;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button {
+      background: 0;
+      border: 0;
+      font-size: 18px; // TODO variablise
+      opacity: 0.8;
+      color: $p;
+    }
+
+    button.active {
+      border-bottom: 2px solid $p;
+      opacity: 1;
+    }
+  }
+
+  &__title {
       font-size: $size-1h;
       margin-bottom: $size-1;
       text-align: center;
@@ -19,8 +41,29 @@
     margin-top: $size-2;
 
     li {
-      width: calc(25% - 12px);
       text-align: center;
+      width: 100%;
+    }
+
+    @include sm {
+
+      li {
+        width: calc(50% - ($size-1 / 2));
+      }
+    }
+
+    @include md {
+
+      li {
+        width: calc(33.3334% - 11px);
+      }
+    }
+
+    @include lg {
+
+      li {
+        width: calc(25% - 12px);
+      }
     }
   }
 }
