@@ -54,6 +54,8 @@ export class HomeComponent {
     }
 
     search(): void {
-      this.router.navigateByUrl('search');
+      this.router.navigate(['/search'], {
+        queryParams: { purchaseType: this.active }
+      });
     }
 }
