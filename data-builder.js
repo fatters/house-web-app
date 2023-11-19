@@ -54,14 +54,15 @@ const purchaseType = [
   'rent'
 ];
 
-const ITEMS_PER_COUNTY = 10;
+const BUY_ITEMS_PER_COUNTY = 10;
+const RENT_ITEMS_PER_COUNTY = 5;
 let data = [];
 
-const buildItem = (county) => {
+const buildItem = (county, purchaseType) => {
   return {
     advertType: advertType[getRandomNumber(0, advertType.length - 1)],
     propertyType: propertyType[getRandomNumber(0, propertyType.length - 1)],
-    purchaseType: purchaseType[getRandomNumber(0, 1)],
+    purchaseType: purchaseType,
     saleType: 'private',
     dateCreated: new Date(new Date() - Math.random()*(1e+12)),
     dateUpdated: null,
@@ -99,8 +100,11 @@ const getRandomNumber = (min, max) => {
 }
 
 for (let i = 0; i < counties.length; i++) {
-  for (let j = 0; j < ITEMS_PER_COUNTY; j++) {
-    data.push(buildItem(counties[i]));
+  for (let j = 0; j < BUY_ITEMS_PER_COUNTY; j++) {
+    data.push(buildItem(counties[i], 'buy'));
+  }
+  for (let k = 0; k < RENT_ITEMS_PER_COUNTY; k++) {
+    data.push(buildItem(counties[i], 'rent'));
   }
 }
 

@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   @Input({ transform: numberAttribute }) maxPrice = 0;
   @Input() propertyType = '';
   @Input() county = '';
+  @Input() sort = '';
 
   searchItems = signal<any>([]);
   isLoading = signal<boolean>(false);

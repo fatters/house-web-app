@@ -59,11 +59,11 @@
       </div>
 
       <div>
-        <select>
-          <option>Newest Listed</option>
-          <option>Oldest Listed</option>
-          <option>Price High</option>
-          <option>Price Low</option>
+        <select (change)="changeFilter('sort', $any($event.target).value)" [value]="sort || 'newest'">
+          <option value="newest">Newest Listed</option>
+          <option value="oldest">Oldest Listed</option>
+          <option value="priceHigh">Price High</option>
+          <option value="priceLow">Price Low</option>
         </select>
       </div>
 
@@ -87,7 +87,7 @@
             <img [src]="item.media.images[1]" alt="" width="240" />              
           </div>
           <div class="search-item__content">
-            <p><strong>{{item.address.one}} {{item.address.two}}, {{item.address.town}}, {{item.address.county}}</strong></p>
+            <p><strong>{{item.address.one}} {{item.address.two}}, {{item.address.town}}, {{item.address.county}} | {{item.dateCreated | date}}</strong></p>
             <p>&euro;{{item.price.value | number}}</p>
             <p>Beds: {{item.beds}}</p>
             <p>Baths: {{item.baths}}</p>
