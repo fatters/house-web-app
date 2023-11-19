@@ -1,4 +1,5 @@
 const fs = require('fs');
+const crypto = require('crypto');
 
 const counties = [
   'Antrim',
@@ -49,17 +50,13 @@ const propertyType = [
   'land'
 ];
 
-const purchaseType = [
-  'buy',
-  'rent'
-];
-
 const BUY_ITEMS_PER_COUNTY = 10;
 const RENT_ITEMS_PER_COUNTY = 5;
 let data = [];
 
 const buildItem = (county, purchaseType) => {
   return {
+    id: crypto.randomUUID(),
     advertType: advertType[getRandomNumber(0, advertType.length - 1)],
     propertyType: propertyType[getRandomNumber(0, propertyType.length - 1)],
     purchaseType: purchaseType,

@@ -80,7 +80,7 @@
       <p>loading...</p>
     }
     @for (item of searchItems(); track item) {
-      <a [routerLink]="'/buy/residential/county/town/advert/1'" class="item-wrapper">
+      <a [routerLink]="'/buy/residential/county/town/advert/' + item.id" class="item-wrapper">
         <div class="search-item">
           <div class="search-item__media">
             <img class="search-item__media__one" [src]="item.media.images[0]" alt="" />
