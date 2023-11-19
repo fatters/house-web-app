@@ -1,12 +1,13 @@
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject, numberAttribute, signal } from "@angular/core";
-import { HttpService } from "../../services/http.service";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { FiltersDialogComponent } from "../../components/filters-dialog/filters-dialog.component";
 
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, DialogModule, RouterModule],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,7 +24,7 @@ export class SearchComponent implements OnInit {
   searchItems = signal<any>([]);
   isLoading = signal<boolean>(false);
 
-  // private dialog = inject(Dialog); TODO instal cdk
+  private dialog = inject(Dialog);
   private route = inject(ActivatedRoute);
   private router: Router = inject(Router);
 
@@ -69,12 +70,7 @@ export class SearchComponent implements OnInit {
   }
 
   openAllFilters(): void {
-    console.log('open all');
-    // this.dialog.open(CdkDialogDataExampleDialog, {
-    //   minWidth: '300px',
-    //   data: {
-    //     animal: 'panda',
-    //   },
-    // });
+    console.log('test')
+    this.dialog.open(FiltersDialogComponent);
   }
 }

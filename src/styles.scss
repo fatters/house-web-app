@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@use 'styles/variables';
+@import 'styles/variables';
+@import 'styles/mixins';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 
@@ -81,7 +83,7 @@ button {
 .page {
   padding: $size-1 0;
 
-  @media screen and (min-width: 992px) {
+  @include lg {
     padding: $size-2 0;
   }
 }
