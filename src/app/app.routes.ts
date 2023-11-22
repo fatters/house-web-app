@@ -38,6 +38,10 @@ export const routes: Routes = [
   },
   ////////////////////////////////////////////////////////////////////
   {
+    path: 'map',
+    loadComponent: () => import('./pages/map/map.component').then((m) => m.MapComponent)
+  },
+  {
     path: 'privacy-policy',
     loadComponent: () => import('./pages/privacy-policy/privacy-policy.component').then((m) => m.PrivacyPolicyComponent) 
   },

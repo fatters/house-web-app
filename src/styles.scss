@@ -84,7 +84,10 @@ button {
   padding: $size-1 0;
 
   @include lg {
-    padding: $size-2 0;
+
+    &:not(.page--no-expand) {
+      padding: $size-2 0;
+    }
   }
 }
 

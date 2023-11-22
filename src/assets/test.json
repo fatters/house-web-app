@@ -9485,6 +9485,7 @@
       "county": "Louth",
       "eirCode": "A92 YW02"
     },
+    "latLong": [53.853, -6.5387],
     "price": {
       "value": 297187,
       "currency": "EUR",
@@ -9617,6 +9618,7 @@
       "county": "Louth",
       "eirCode": "A92 YW02"
     },
+    "latLong": [53.7147, -6.35044],
     "price": {
       "value": 316548,
       "currency": "EUR",
@@ -9683,6 +9685,7 @@
       "county": "Louth",
       "eirCode": "A92 YW02"
     },
+    "latLong": [53.9916, -6.39291],
     "price": {
       "value": 297080,
       "currency": "EUR",

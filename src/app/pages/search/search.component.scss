@@ -1,12 +1,12 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .filter-container {
   background: $p-light;
-  padding: $size-2 0;
+  padding: $size-1 0;
 
   .filters {
     display: flex;
-    justify-content: space-between;
     gap: $size-1;
   }
 
@@ -64,14 +64,14 @@
     flex-direction: row;
 
     img {
-      width: 240px;
+      width: 300px;
     }
   }
 
   @media screen and (min-width: 992px) {
 
     .search-item__media__two {
-      display: block; 
+      display: none; 
     }
   }
 }
@@ -82,4 +82,60 @@
   @media screen and (min-width: 992px) {
     margin-top: $size-1h;
   }
+}
+
+.container--search {
+  display: flex;
+  gap: $size-1h;
+}
+
+.search-main {
+  flex-grow: 1;
+
+  @include xl {
+    min-width: 42rem;
+  }
+
+  @include xxl {
+    min-width: 50rem;
+  }
+}
+
+.search-aside {
+  display: none;
+  border: 1px solid red;
+  margin-top: -$size-2;
+  margin-bottom: -$size-2;
+  position: relative;
+  min-height: 100%;
+
+//   > div {
+//     border: 2px solid $p;
+//     border-radius: $size-q;
+
+//     + div {
+//       margin-top: $size-1h;
+//     }
+//   }
+
+  @include md {
+    display: block;
+    width: 100%;
+  }
+}
+
+.container--search {
+  max-width: 100%;
+}
+
+.map-wrapper {
+  border: 2px solid blue;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  max-height: calc(100vh - 173px);
+}
+
+#map {
+  height: 100%;
 }
