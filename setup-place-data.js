@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { resourceLimits } = require('worker_threads');
 
 let counties = [];
 let towns = [];
@@ -26,3 +25,11 @@ counties = results?.filter((res) => {
 });
 
 fs.writeFile('./src/assets/app-counties.json', JSON.stringify(counties), function(err) { console.log('Error', err) });
+
+const boundaries = JSON.parse(fs.readFileSync('./src/assets/county-boundaries.geojson', { encoding: 'utf8', flag: 'r' }));
+const cBounds = boundaries.features;
+
+cBounds.forEach((bounds) => {{
+  const countyName = bounds?.properties?.ENGLISH?.toLowerCase() ?? 'error';
+  fs.writeFile(`./src/assets/boundaries/county/${countyName}.geojson`, JSON.stringify(bounds), function(err) { console.log('Error', err) });
+}})
