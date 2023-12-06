@@ -98,7 +98,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     // zoom level 13/14 show price detail
 
     // county but no town
-    let geo$: Observable<any> | undefined;
+    let geo$: Observable<any>;
 
     if (this.town) {
       geo$ = this.http.getTownGeo(this.town);
