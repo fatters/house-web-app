@@ -1,6 +1,6 @@
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
-import { CommonModule } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, inject, numberAttribute, signal } from "@angular/core";
+import { CommonModule, isPlatformBrowser } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Input, OnInit, PLATFORM_ID, inject, numberAttribute, signal } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FiltersDialogComponent } from "../../components/filters-dialog/filters-dialog.component";
 import { HttpService } from '../../services/http.service';
@@ -32,6 +32,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   private router: Router = inject(Router);
   private http: HttpService = inject(HttpService);
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  
   ngOnInit(): void {
     this.route.data.subscribe(({ items }) => {
       console.log('set search items');
@@ -48,7 +50,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.handleMap();
+    if (isPlatformBrowser(this.platformId)) {
+      this.handleMap();
+    }
   }
 
   // Following functions move to filters components
