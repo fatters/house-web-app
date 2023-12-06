@@ -74,67 +74,65 @@
   </div>
 </div>
 
-<div class="page">
-  <div class="container container--search">
-    <div class="search-main">
-      @if (isLoading()) {
-        <p>loading...</p>
-      }
-      @for (item of searchItems(); track item) {
-        <a [routerLink]="'/buy/residential/county/town/advert/' + item.id" class="item-wrapper">
-          <div class="search-item">
-            <div class="search-item__media">
-              <img class="search-item__media__one" [src]="item.media.images[0]" alt="" />
-              <img class="search-item__media__two" [src]="item.media.images[1]" alt="" />              
-            </div>
-            <div class="search-item__content">
-              <p><strong>{{item.address.one}} {{item.address.two}}, {{item.address.town}}, {{item.address.county}} | {{item.dateCreated | date}}</strong></p>
-              <p>&euro;{{item.price.value | number}}</p>
-              <p>Beds: {{item.beds}}</p>
-              <p>Baths: {{item.baths}}</p>
-              <p>Size: {{item.sizeMetersSquared}}m&#178;</p>
-              <p>Advert Type: {{item.advertType}}</p>
-              <p>Property type: {{item.propertyType}}</p>
-              <p>purchase: {{item.purchaseType}}</p>
-            </div>
+<div class="container container--search container--map">
+  <div class="search-main">
+    @if (isLoading()) {
+      <p>loading...</p>
+    }
+    @for (item of searchItems(); track item) {
+      <a [routerLink]="'/buy/residential/county/town/advert/' + item.id" class="item-wrapper">
+        <div class="search-item">
+          <div class="search-item__media">
+            <img class="search-item__media__one" [src]="item.media.images[0]" alt="" />
+            <img class="search-item__media__two" [src]="item.media.images[1]" alt="" />              
           </div>
-        </a>
-      } @empty {
-       <p>No results</p>
-      }
-  
-      <!-- pagination -->
-      <ul class="pagination not-implemented">
-        <li><a href="">1</a></li>
-        <li><a href="">2</a></li>
-        <li><a href="">3</a></li>
-        <li><a href="">4</a></li>
-        <li><a href="">5</a></li>
-      </ul>
-    </div>
-    <aside class="search-aside">
-      <div class="map-wrapper">
-        <div id="map"></div>
-      </div>
-      <!-- {{/*  <div>
-        <p>map</p>
-      </div>
-      <div>
-        <p>seo links for place (e.g. places "under" (towns) or places near)</p>
-      </div>
-      <div>
-        <p>if youre on buy, try rent</p>
-      </div>
-      <div>
-        <p>Stay secure with our security page</p>
-      </div>
-      <div>
-        <p>Active Filters (sticky)</p>
-        @for (test of allActiveFilters | keyvalue; track test) {
-          <p>{{test.key}}: {{test.value}} <button>x</button></p>
-        }  */}} 
-      </div>    --->
-    </aside>
+          <div class="search-item__content">
+            <p><strong>{{item.address.one}} {{item.address.two}}, {{item.address.town}}, {{item.address.county}} | {{item.dateCreated | date}}</strong></p>
+            <p>&euro;{{item.price.value | number}}</p>
+            <p>Beds: {{item.beds}}</p>
+            <p>Baths: {{item.baths}}</p>
+            <p>Size: {{item.sizeMetersSquared}}m&#178;</p>
+            <p>Advert Type: {{item.advertType}}</p>
+            <p>Property type: {{item.propertyType}}</p>
+            <p>purchase: {{item.purchaseType}}</p>
+          </div>
+        </div>
+      </a>
+    } @empty {
+     <p>No results</p>
+    }
+
+    <!-- pagination -->
+    <ul class="pagination not-implemented">
+      <li><a href="">1</a></li>
+      <li><a href="">2</a></li>
+      <li><a href="">3</a></li>
+      <li><a href="">4</a></li>
+      <li><a href="">5</a></li>
+    </ul>
   </div>
+  <aside class="search-aside">
+    <div class="map-wrapper">
+      <div id="map"></div>
+    </div>
+    <!-- {{/*  <div>
+      <p>map</p>
+    </div>
+    <div>
+      <p>seo links for place (e.g. places "under" (towns) or places near)</p>
+    </div>
+    <div>
+      <p>if youre on buy, try rent</p>
+    </div>
+    <div>
+      <p>Stay secure with our security page</p>
+    </div>
+    <div>
+      <p>Active Filters (sticky)</p>
+      @for (test of allActiveFilters | keyvalue; track test) {
+        <p>{{test.key}}: {{test.value}} <button>x</button></p>
+      }  */}} 
+    </div>    --->
+  </aside>
 </div>
 

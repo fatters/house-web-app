@@ -4,6 +4,9 @@
 .filter-container {
   background: $p-light;
   padding: $size-1 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 
   .filters {
     display: flex;
@@ -86,11 +89,15 @@
 
 .container--search {
   display: flex;
-  gap: $size-1h;
+  gap: $size-1;
+  // flex-grow: 1;
+//   height: 100%;
+//   box-sizing: border-box;
 }
 
 .search-main {
   flex-grow: 1;
+  padding: $size-1 0;
 
   @include xl {
     min-width: 42rem;
@@ -101,13 +108,17 @@
   }
 }
 
+.container--map {
+  display: flex;
+  padding-right: 0;
+  height: calc(100% - 58px);
+}
+
 .search-aside {
   display: none;
-  border: 1px solid red;
-  margin-top: -$size-2;
-  margin-bottom: -$size-2;
-  position: relative;
-  min-height: 100%;
+//   border: 2px solid red;
+  //display: flex;
+  //flex-grow: 1;
 
 //   > div {
 //     border: 2px solid $p;
@@ -129,13 +140,17 @@
 }
 
 .map-wrapper {
-  border: 2px solid blue;
+//   border: 2px solid blue;
   height: 100%;
   position: sticky;
-  top: 0;
+  top: 58px;
   max-height: calc(100vh - 173px);
 }
 
 #map {
   height: 100%;
+}
+
+:host {
+  display: contents;
 }

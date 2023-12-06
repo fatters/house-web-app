@@ -94,48 +94,52 @@ export class SearchComponent implements OnInit, AfterViewInit {
     // zoom level 13/14 show price detail
 
     // county but no town
-    let geo$: Observable<any>;
+    let geo$: Observable<any> | undefined;
 
     if (this.town) {
       geo$ = this.http.getTownGeo(this.town);
-    } else {
+    } else if (this.county) {
       geo$ = this.http.getCountyGeo(this.county);
+    } 
+
+    if (geo$) {
+      geo$.subscribe((geo: any) => {
+        var lMap = (window as any).L?.map('map');
+  
+        (window as any).L?.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+          minZoom: 9,
+          maxZoom: 16,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(lMap);
+  
+        // SELECTION
+        // const areaSelection = new (window as any).leafletAreaSelection.DrawAreaSelection({
+        //   onPolygonReady: () => console.log('mooo')
+        // });
+        // console.log(areaSelection);
+  
+        // areaSelection.onPolygonReady((poly: any) => console.log('moo?', poly))
+        // lMap.addControl(areaSelection);
+  
+        var gj = (window as any).L.geoJSON(geo, { color: '#3d405b' });
+        gj.addTo(lMap);
+        lMap.fitBounds(gj.getBounds());
+  
+        // TODO: only do this when we guarantee we have repsonse
+        this.searchItems().forEach((proper: any) => {
+          if (proper.latLong) {
+            (window as any).L.circle(proper.latLong, {
+              color: 'blue',
+              fillColor: 'blue',
+              fillOpacity: 1,
+              radius: 300
+            }).addTo(lMap);
+          }
+        })
+      });  
+    } else {
+      console.log('show county selection')
     }
-
-
-    geo$.subscribe((geo: any) => {
-      var lMap = (window as any).L?.map('map');
-
-      (window as any).L?.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        minZoom: 9,
-        maxZoom: 16,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(lMap);
-
-      // SELECTION
-      // const areaSelection = new (window as any).leafletAreaSelection.DrawAreaSelection({
-      //   onPolygonReady: () => console.log('mooo')
-      // });
-      // console.log(areaSelection);
-
-      // areaSelection.onPolygonReady((poly: any) => console.log('moo?', poly))
-      // lMap.addControl(areaSelection);
-
-      var gj = (window as any).L.geoJSON(geo, { color: '#3d405b' });
-      gj.addTo(lMap);
-      lMap.fitBounds(gj.getBounds());
-
-      // TODO: only do this when we guarantee we have repsonse
-      this.searchItems().forEach((proper: any) => {
-        if (proper.latLong) {
-          (window as any).L.circle(proper.latLong, {
-            color: 'blue',
-            fillColor: 'blue',
-            fillOpacity: 1,
-            radius: 300
-          }).addTo(lMap);
-        }
-      })
-    });    
+  
   }
 }
