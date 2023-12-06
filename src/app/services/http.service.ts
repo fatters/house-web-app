@@ -71,6 +71,10 @@ export class HttpService {
     return this.http.get(`./assets/boundaries/county/${county.toLowerCase()}.geojson`).pipe((map((geo: any) => geo.geometry)));
   }
 
+  getTownGeo(town: string): any {
+    return this.http.get(`./assets/boundaries/town/${town.toLowerCase()}.geojson`).pipe((map((geo: any) => geo.geometry)));
+  }
+
   search(params: any): any {
     let data = this.http.get('./assets/test.json');
 

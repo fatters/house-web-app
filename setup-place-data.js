@@ -26,10 +26,20 @@ counties = results?.filter((res) => {
 
 fs.writeFile('./src/assets/app-counties.json', JSON.stringify(counties), function(err) { console.log('Error', err) });
 
-const boundaries = JSON.parse(fs.readFileSync('./src/assets/county-boundaries.geojson', { encoding: 'utf8', flag: 'r' }));
-const cBounds = boundaries.features;
+const boundariesIE = JSON.parse(fs.readFileSync('./src/assets/county-boundaries.geojson', { encoding: 'utf8', flag: 'r' }));
+const boundariesNI = JSON.parse(fs.readFileSync('./src/assets/county-boundaries-ni.geojson', { encoding: 'utf8', flag: 'r' }));
+const cBounds = boundariesIE.features.concat(boundariesNI.features);
 
-cBounds.forEach((bounds) => {{
-  const countyName = bounds?.properties?.ENGLISH?.toLowerCase() ?? 'error';
+cBounds.forEach((bounds) => {
+  const countyName = bounds?.properties?.ENGLISH?.toLowerCase() ?? bounds?.properties?.CountyName?.toLowerCase() ?? 'error';
   fs.writeFile(`./src/assets/boundaries/county/${countyName}.geojson`, JSON.stringify(bounds), function(err) { console.log('Error', err) });
-}})
+})
+
+const townBoundariesIE = JSON.parse(fs.readFileSync('./src/assets/town-boundaries.geojson', { encoding: 'utf8', flag: 'r' }));
+// TODO: NI
+const tBounds = townBoundariesIE.features;
+
+tBounds.forEach((bounds) => {
+  const townName = bounds?.properties?.SETTL_NAME?.toLowerCase() ?? 'error';
+  fs.writeFile(`./src/assets/boundaries/town/${townName}.geojson`, JSON.stringify(bounds), function(err) { console.log('Error', err) });
+})

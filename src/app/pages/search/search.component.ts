@@ -4,6 +4,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, injec
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FiltersDialogComponent } from "../../components/filters-dialog/filters-dialog.component";
 import { HttpService } from '../../services/http.service';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @Input({ transform: numberAttribute }) maxPrice = 0;
   @Input() propertyType = '';
   @Input() county = '';
+  @Input() town = '';
   @Input() sort = '';
 
   searchItems = signal<any>([]);
@@ -33,7 +35,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.route.data.subscribe(({ items }) => {
       console.log('set search items');
-      this.searchItems.set(items)
+      //setTimeout(() => this.searchItems.set(items), 5000);
+      this.searchItems.set(items);
     });
 
     const updatedQueryParams = {
@@ -91,7 +94,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
     // zoom level 13/14 show price detail
 
     // county but no town
-    this.http.getCountyGeo(this.county).subscribe((geo: any) => {
+    let geo$: Observable<any>;
+
+    if (this.town) {
+      geo$ = this.http.getTownGeo(this.town);
+    } else {
+      geo$ = this.http.getCountyGeo(this.county);
+    }
+
+
+    geo$.subscribe((geo: any) => {
       var lMap = (window as any).L?.map('map');
 
       (window as any).L?.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -113,6 +125,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       gj.addTo(lMap);
       lMap.fitBounds(gj.getBounds());
 
+      // TODO: only do this when we guarantee we have repsonse
       this.searchItems().forEach((proper: any) => {
         if (proper.latLong) {
           (window as any).L.circle(proper.latLong, {
